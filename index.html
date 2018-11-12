@@ -4,82 +4,114 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>111</title>
+    <title>标题</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/common.js"></script>
 </head>
 <body>
 <div class="wrapper">
-    <div class="step-box">
-        <div class="step-left">
-            <div class="step-item lbox-4">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item lbox-3">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item lbox-2">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item lbox-1">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
+    <div class="head-content">
+        <div class="header-title">
+            <h2></h2>
         </div>
-        <div class="step-current">
-        </div>
-        <div class="step-right">
-            <div class="step-item rbox-1">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item rbox-2">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item rbox-3">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
-            <div class="step-item rbox-4">
-                <p>灾备环境关闭</p>
-                <span>DONE</span>
-            </div>
+        <div class="header-timeout">
+            <ul>
+                <li><span>RTO</span></li>
+                <li><span>0</span></li>
+                <li><span>0</span></li>
+                <li><em>:</em></li>
+                <li><span>0</span></li>
+                <li><span>0</span></li>
+                <li><em>:</em></li>
+                <li><span>0</span></li>
+                <li><span>0</span></li>
+            </ul>
         </div>
     </div>
-    <div class="box-progress">
-        <div class="box-progress-container">
-            <div class="progress-left-time">
-                2018-11-10 11:00:00
+    <div class="step-box">
+
+        <div class="box-left">
+            <div class="step-item step-left4">
+                <div class="lbox-4" style="display: none">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
             </div>
-            <div class="progress-right-time">
-                2018-11-11 11:00:00
+            <div class="step-item step-left3">
+                <div class="lbox-3" style="display: none">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
             </div>
-            <div class='progress active'>
-                <div class='progress-par bar' style='width:80%;'>
-                    <span></span>
-                    <i>80%</i>
+            <div class="step-item step-left2">
+                <div class="lbox-2" style="display: none">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
+            </div>
+            <div class="step-item step-left1">
+                <div class="lbox-1" style="display: none">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
                 </div>
             </div>
         </div>
+
+        <div class="box-center">
+            <div class="step-current">
+                <div class="step-item">
+                    <div class="cur-item-wb">
+                        <div class="progress-ring" data-name="" data-percent=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-right">
+            <div class="step-item step-right1">
+                <div class="rbox-1" style="display: none;">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
+            </div>
+            <div class="step-item step-right2">
+                <div class="rbox-2" style="display: none;">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
+            </div>
+            <div class="step-item step-right3">
+                <div class="rbox-3" style="display: none;">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
+            </div>
+            <div class="step-item step-right4">
+                <div class="rbox-4" style="display: none;">
+                    <div class="con-circle"></div>
+                    <div class="con-text"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+     <div class="box-progress">
+         <div class="box-progress-container">
+             <div class="progress-left-time"></div>
+             <div class="progress-right-time"></div>
+             <div class='progress active'>
+                 <div class='progress-par bar' style='width:1%;'><span></span><i>0%</i></div>
+             </div>
+         </div>
+     </div>
 </div>
-<!--<div class="cur-item-wb">
-    <div class="cur-item-loading"></div>
-    <div class="cur-item-ib">
-        <h2>{{ d.name }}</h2>
-        <h3>{{ d.state }}</h3>
-    </div>
-</div>-->
 <script id="stepItemTpl" type="text/html">
     <div class="step-item">
         <div class="cur-item-wb">
-            <div class="progress-ring" data-name="{{ d.name }}" data-state="{{ d.state }}" data-percent="20">
+            <div class="progress-ring" data-name="{{ d.name }}" data-state="{{ d.state }}"
+                 data-percent="{{ d.percent }}">
             </div>
         </div>
     </div>
