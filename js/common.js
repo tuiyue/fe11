@@ -82,7 +82,8 @@ var util = {
         util.makeR(rightData);
         util.makeL(leftData);
 
-        if (state === 'DONE') {
+        var stateArr = ['DONE','STOP'];
+        if ($.inArray(state,stateArr)) {
             $('.progress-par span').css({
                 'background': 'url("images/done.png") no-repeat',
                 'background-size': '70px 50px'

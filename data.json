@@ -3,12 +3,12 @@
   "starttime": "2018-11-10 11:00:00",
   "rtoendtime": "2018-11-10 11:02:00",
   "endtime": "2018-11-10 11:05:00",
-  "state": "RUN",
-  "rtostate": "RUN",
+  "state": "STOP",
+  "rtostate": "STOP",
   "percent": 100,
   "curstep": {
     "name": "灾备环境关闭",
-    "state": "RUN",
+    "state": "STOP",
     "starttime": "2018-11-10 11:04:00",
     "endtime": "2018-11-10 11:05:00",
     "percent": 60
