@@ -68,12 +68,13 @@ var util = {
         var color = {
             run: '#5091C7',
             done: '#00ac00',
-            stop: '#5091C7',
+            stop: '#ff0000',
             error: '#ff0000',
             confirm: '#e0b200',
             edit: '#c4c4c4'
         };
         var curState = curStep.state.toLocaleLowerCase();
+        console.log(curState);
         loadingNow.attr('data-name', curStep.name);
         loadingNow.attr('data-percent', curStep.percent);
         loadingNow.attr('data-color', '#f0f0f0,' + color[curState]);
