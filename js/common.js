@@ -104,7 +104,7 @@ var util = {
                 }
                 var rbox = $('.rbox-' + (i + 1));
                 var html = rightData[i].name;
-                rbox.find('.con-text').html('<p>' + html + '</p>');
+                rbox.find('.con-text').html('<div class="text"><p>' + html + '</p></div>');
                 rbox.addClass('step-' + rightData[i].state.toLocaleLowerCase());
                 rbox.show();
                 rindex++;
@@ -126,7 +126,7 @@ var util = {
                     var timer = util.getTimerByIndex(i, leftData[i].starttime, leftData[i].endtime);
                     html += '<em>' + timer + '</em>';
                 }
-                lbox.find('.con-text').html(html);
+                lbox.find('.con-text').html('<div class="text">'+html+'</div>');
                 lbox.addClass('step-' + leftData[i].state.toLocaleLowerCase());
                 index++;
             }

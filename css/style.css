@@ -485,7 +485,6 @@ input {
     font-size: 14px;
     left: 15px;
     bottom: 50px;
-    display: table;
 }
 
 .box-left .lbox-1 .con-circle {
@@ -515,7 +514,6 @@ input {
     border: 6px green solid;
     left: -10px;
     bottom: 100px;
-    display: table;
 }
 
 .box-left .lbox-2 .con-circle {
@@ -545,7 +543,6 @@ input {
     border: 4px green solid;
     left: 10px;
     bottom: 190px;
-    display: table;
 }
 
 .box-left .lbox-3 .con-circle {
@@ -576,7 +573,6 @@ input {
     border: 2px green solid;
     left: 50px;
     bottom: 290px;
-    display: table;
 }
 
 .box-left .lbox-4 .con-circle {
@@ -643,7 +639,6 @@ input {
     font-size: 14px;
     left: 15px;
     bottom: 50px;
-    display: table;
 }
 
 .box-right .rbox-1 .con-circle {
@@ -667,7 +662,6 @@ input {
     border: 6px green solid;
     left: 12px;
     bottom: 100px;
-    display: table;
 }
 
 .box-right .rbox-2 .con-circle {
@@ -691,7 +685,6 @@ input {
     border: 4px green solid;
     left: 25px;
     bottom: 170px;
-    display: table;
 }
 
 .box-right .rbox-3 .con-circle {
@@ -716,7 +709,6 @@ input {
     border: 2px green solid;
     left: 15px;
     bottom: 270px;
-    display: table;
 }
 
 .box-right .rbox-4 .con-circle {
@@ -736,6 +728,12 @@ input {
 }
 
 .step-box .step-item .con-text {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.step-box .step-item .con-text .text {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
