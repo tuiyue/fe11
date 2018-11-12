@@ -84,7 +84,7 @@ var util = {
         util.makeL(leftData);
 
         var stateArr = ['DONE','STOP'];
-        if ($.inArray(state,stateArr)) {
+        if ($.inArray(state,stateArr) >= 0) {
             setTimeout(function () {
                 $('.progress-par span').css({
                     'background': 'url("images/done.png") no-repeat',
@@ -209,7 +209,7 @@ var util = {
 
                 var textName = $target.attr('data-name');
 
-                $target.append('<div class="inner-progress"></div><div class="progress-track"></div><div class="progress-left"></div><div class="progress-right"></div><div class="progress-cover"></div><div class="progress-text"><p>' + textName + '</p><p>' + percent + '%</p></div>');
+                $target.html('<div class="inner-progress"></div><div class="progress-track"></div><div class="progress-left"></div><div class="progress-right"></div><div class="progress-cover"></div><div class="progress-text"><p>' + textName + '</p><p>' + percent + '%</p></div>');
 
                 var x = $target.find('.progress-cover').height(); // 触发 Layout
                 // http://stackoverflow.com/questions/12088819/css-transitions-on-new-elements
