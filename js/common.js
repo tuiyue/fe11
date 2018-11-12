@@ -7,7 +7,7 @@ var util = {
             if (state === 'DONE') {
                 clearInterval(interval);
             }
-            util.request();
+            //util.request();
         }, 3 * 1000); //3秒/次请求
     },
     request: function () {
@@ -26,7 +26,6 @@ var util = {
         });
     },
     makeHtml: function (data) {
-        var curStep = data.curstep;
         state = data.state;
         if (headerTitle === '') {
             headerTitle = data.name;
@@ -39,23 +38,24 @@ var util = {
         progressBar.find('i').text(percent + '%');
         progressBar.addClass(state.toLocaleLowerCase());
 
-        $('.progress-left-time').text(curStep.starttime);
-        $('.progress-right-time').text(curStep.endtime);
+        $('.progress-left-time').text(data.starttime);
+        $('.progress-right-time').text(data.endtime);
 
-        util.makeTimer(curStep.state, curStep.starttime, curStep.endtime);
+        util.makeTimer(data.state, data.starttime, data.endtime);
 
         var leftData = [];
         var rightData = [];
+        var curStep = [];
         var curIndex = 0;
         for (var j = 0; j < data.steps.length; j++) {
-            if (data.steps[j].name === curStep.name) {
+            if (data.steps[j].type === 'cur') {
                 curIndex = j;
                 break;
             }
         }
         for (var i = 0; i < data.steps.length; i++) {
             if (i === curIndex) {
-                continue;
+                curStep = data.steps[i];
             } else if (i < curIndex) {
                 leftData.push(data.steps[i]);
             } else {
@@ -83,14 +83,14 @@ var util = {
         util.makeR(rightData);
         util.makeL(leftData);
 
-        var stateArr = ['DONE','STOP','ERROR'];
-        if ($.inArray(state,stateArr) >= 0) {
+        var stateArr = ['DONE', 'STOP', 'ERROR'];
+        if ($.inArray(state, stateArr) >= 0) {
             setTimeout(function () {
                 $('.progress-par span').css({
                     'background': 'url("images/done.png") no-repeat',
                     'background-size': '70px 50px'
                 });
-            },1*1000);
+            }, 1 * 1000);
             clearInterval(interval);
             clearInterval(tmInterval);
         }
@@ -104,7 +104,7 @@ var util = {
                 }
                 var rbox = $('.rbox-' + (i + 1));
                 var html = rightData[i].name;
-                lbox.find('.con-text').html(html);
+                rbox.find('.con-text').html('<p>' + html + '</p>');
                 rbox.addClass('step-' + rightData[i].state.toLocaleLowerCase());
                 rbox.show();
                 rindex++;
