@@ -34,7 +34,7 @@ var util = {
         }
 
         var progressBar = $('.progress-par');
-        var percent = parseInt(curStep.percent);
+        var percent = parseInt(data.percent);
         progressBar.attr('style', 'width:' + percent + '%');
         progressBar.find('i').text(percent + '%');
         progressBar.addClass(state.toLocaleLowerCase());
@@ -83,7 +83,7 @@ var util = {
         util.makeR(rightData);
         util.makeL(leftData);
 
-        var stateArr = ['DONE','STOP'];
+        var stateArr = ['DONE','STOP','ERROR'];
         if ($.inArray(state,stateArr) >= 0) {
             setTimeout(function () {
                 $('.progress-par span').css({
