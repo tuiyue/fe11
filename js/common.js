@@ -1,4 +1,4 @@
-var state = '', interval = 0, tmInterval = 0, headerTitle = '';
+﻿var state = '', interval = 0, tmInterval = 0, headerTitle = '';
 var util = {
     run: function () {
         util.initExtend();
@@ -67,7 +67,7 @@ var util = {
         var loadingNow = $(".progress-ring");
         var color = {
             run: '#5091C7',
-            done: '#00ac00',
+            done: '#32c5d2 ',
             stop: '#ff0000',
             error: '#ff0000',
             confirm: '#e0b200',
