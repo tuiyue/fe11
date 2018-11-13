@@ -1,4 +1,5 @@
 ﻿var state = '', interval = 0, tmInterval = 0, headerTitle = '';
+var allState = ['run', 'done', 'error', 'stop', 'confirm', 'edit'];
 var util = {
     run: function () {
         util.initExtend();
@@ -7,7 +8,7 @@ var util = {
             if (state === 'DONE') {
                 clearInterval(interval);
             }
-            //util.request();
+            util.request();
         }, 3 * 1000); //3秒/次请求
     },
     request: function () {
@@ -74,7 +75,6 @@ var util = {
             edit: '#c4c4c4'
         };
         var curState = curStep.state.toLocaleLowerCase();
-        console.log(curState);
         loadingNow.attr('data-name', curStep.name);
         loadingNow.attr('data-percent', curStep.percent);
         loadingNow.attr('data-color', '#f0f0f0,' + color[curState]);
@@ -88,7 +88,7 @@ var util = {
             setTimeout(function () {
                 $('.progress-par span').css({
                     'background': 'url("images/done.png") no-repeat',
-                    'background-size': '70px 50px'
+                    'background-size': '90px 70px'
                 });
             }, 1 * 1000);
             clearInterval(interval);
@@ -96,6 +96,14 @@ var util = {
         }
     },
     makeR: function (rightData) {
+        for (var n = 0; n < 4; n++) {
+            var rbox1 = $('.rbox-' + (n + 1));
+            rbox1.find('.con-text').html('<div class="text"></div>');
+            for (var c = 0; c < allState.length; c++) {
+                rbox1.removeClass('step-' + allState[c]);
+            }
+            rbox1.hide();
+        }
         if (rightData.length > 0) {
             var rindex = 1;
             for (var i = 0; i < rightData.length; i++) {
@@ -112,6 +120,14 @@ var util = {
         }
     },
     makeL: function (leftData) {
+        for (var n = 0; n < 4; n++) {
+            var lbox1 = $('.lbox-' + (n + 1));
+            lbox1.find('.con-text').html('<div class="text"></div>');
+            for (var c = 0; c < allState.length; c++) {
+                lbox1.removeClass('step-' + allState[c]);
+            }
+            lbox1.hide();
+        }
         if (leftData.length > 0) {
             leftData = leftData.reverse();
             var index = 1;
@@ -126,7 +142,7 @@ var util = {
                     var timer = util.getTimerByIndex(i, leftData[i].starttime, leftData[i].endtime);
                     html += '<em>' + timer + '</em>';
                 }
-                lbox.find('.con-text').html('<div class="text">'+html+'</div>');
+                lbox.find('.con-text').html('<div class="text">' + html + '</div>');
                 lbox.addClass('step-' + leftData[i].state.toLocaleLowerCase());
                 index++;
             }

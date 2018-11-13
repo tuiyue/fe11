@@ -577,6 +577,8 @@ input {
   /*  padding-top: 20px;*/
     white-space: nowrap;
     overflow: hidden;
+    width: 76px;
+    margin: 0 auto;
 }
 
 .box-left .lbox-3 em {
@@ -608,11 +610,12 @@ input {
 }
 
 .box-left .lbox-4 p {
-    /*padding-top: 20px;*/
-    white-space: nowrap;
+    /*padding-top: 20px;
+    white-space: nowrap;*/
     overflow: hidden;
     font-size: 10px;
     transform: scale(0.8);
+    width: 65px;
 }
 
 .box-left .lbox-4 .con-text {
@@ -627,8 +630,8 @@ input {
 
 .box-left .step-item p, .box-right .step-item p {
     text-overflow: ellipsis;
-    padding-left: 10%;
-    padding-right: 10%;
+    /*padding-left: 10%;
+    padding-right: 10%;*/
 }
 
 /*中间*/
@@ -719,6 +722,8 @@ input {
 .box-right .rbox-3 p {
     white-space: nowrap;
     overflow: hidden;
+    width: 76px;
+    margin: 0 auto;
 }
 
 .box-right .rbox-4 {
@@ -744,6 +749,8 @@ input {
     line-height: 60px;
     white-space: nowrap;
     overflow: hidden;
+    width: 65px;
+    margin: 0 auto;
 }
 
 .step-box .step-item .con-text {
