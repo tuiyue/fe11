@@ -8,7 +8,7 @@ var util = {
             if (state === 'DONE') {
                 clearInterval(interval);
             }
-            util.request();
+            //util.request();
         }, 3 * 1000); //3秒/次请求
     },
     request: function () {
@@ -42,7 +42,7 @@ var util = {
         $('.progress-left-time').text(data.starttime);
         $('.progress-right-time').text(data.endtime);
 
-        util.makeTimer(data.state, data.starttime, data.endtime);
+        util.makeTimer(data.rtostate, data.starttime, data.endtime, data.rtoendtime);
 
         var leftData = [];
         var rightData = [];
@@ -168,11 +168,11 @@ var util = {
 
         return str;
     },
-    makeTimer: function (state, starTime, endTime) {
+    makeTimer: function (state, starTime, endTime, rtoEndTime) {
         var timer;
         if (state === 'DONE') {
             clearInterval(tmInterval);
-            timer = util.timeFn(starTime, endTime);
+            timer = util.timeFn(starTime,rtoEndTime);
             util.showTimer(timer);
         } else {
             if (!tmInterval) {
@@ -275,6 +275,10 @@ var util = {
         //计算相差秒数
         var leave3 = leave2 % (60 * 1000);      //计算分钟数后剩余的毫秒数
         var seconds = Math.round(leave3 / 1000);
+
+        console.log(hours);
+        console.log(minutes);
+        console.log(seconds);
         hours = hours < 10 ? '0' + hours : '' + hours;
         minutes = minutes < 10 ? '0' + minutes : '' + minutes;
         seconds = seconds < 10 ? '0' + seconds : '' + seconds;
