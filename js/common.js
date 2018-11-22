@@ -1,4 +1,8 @@
-﻿var state = '', interval = 0, tmInterval = 0, headerTitle = '';
+﻿﻿var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+var state = '',
+    interval = 0,
+    tmInterval = 0,
+    headerTitle = '';
 var allState = ['run', 'done', 'error', 'stop', 'confirm', 'edit'];
 var util = {
     run: function () {
@@ -8,29 +12,33 @@ var util = {
             if (state === 'DONE') {
                 clearInterval(interval);
             }
-            //util.request();
+            util.request();
         }, 3 * 1000); //3秒/次请求
     },
     request: function () {
         $.ajax({
             url: './data.json', //这里面是请求的接口地址
-            type: 'GET',
-            data: {},
+            type: 'POST',
+            data: {
+                p_run_id: $("#process_run_id").val(),
+                csrfmiddlewaretoken: csrfToken
+            },
             timeout: 2000,
             dataType: 'json',
             success: function (data) {
                 util.makeHtml(data);
             },
-            error: function (xhr) {
-                alert('网络错误')
-            }
+            // error: function(xhr) {
+            //     alert('网络错误')
+            // }
         });
     },
     makeHtml: function (data) {
         state = data.state;
         if (headerTitle === '') {
             headerTitle = data.name;
-            $('.header-title h2').text(headerTitle);
+            var process_run_url = $("#process_url").val() + "/" + $("#process_run_id").val()
+            $('.header-title h2').html("<a href='"+ process_run_url +"' target='_parent' style='color:#778899'>"+headerTitle+"</a>");
         }
 
         var progressBar = $('.progress-par');
@@ -87,7 +95,7 @@ var util = {
         if ($.inArray(state, stateArr) >= 0) {
             setTimeout(function () {
                 $('.progress-par span').css({
-                    'background': 'url("images/done.png") no-repeat',
+                    'background': 'url("/static/processindex/images/done.png") no-repeat',
                     'background-size': '90px 70px'
                 });
             }, 1 * 1000);
@@ -172,7 +180,7 @@ var util = {
         var timer;
         if (state === 'DONE') {
             clearInterval(tmInterval);
-            timer = util.timeFn(starTime,rtoEndTime);
+            timer = util.timeFn(starTime, rtoEndTime);
             util.showTimer(timer);
         } else {
             if (!tmInterval) {
@@ -267,13 +275,13 @@ var util = {
         var dateEnd = new Date(d2.replace(/-/g, "/"));
         var dateDiff = dateEnd.getTime() - dateBegin.getTime();
         var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
-        var leave1 = dateDiff % (24 * 3600 * 1000);   //计算天数后剩余的毫秒数
-        var hours = Math.floor(leave1 / (3600 * 1000));//计算出小时数
+        var leave1 = dateDiff % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+        var hours = Math.floor(leave1 / (3600 * 1000)); //计算出小时数
         //计算相差分钟数
-        var leave2 = leave1 % (3600 * 1000);   //计算小时数后剩余的毫秒数
-        var minutes = Math.floor(leave2 / (60 * 1000));//计算相差分钟数
+        var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+        var minutes = Math.floor(leave2 / (60 * 1000)); //计算相差分钟数
         //计算相差秒数
-        var leave3 = leave2 % (60 * 1000);      //计算分钟数后剩余的毫秒数
+        var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
         var seconds = Math.round(leave3 / 1000);
 
         console.log(hours);
