@@ -17,6 +17,7 @@ var util = {
     },
     request: function () {
         $.ajax({
+            //url: '/get_process_index_data/', //这里面是请求的接口地址
             url: './data.json', //这里面是请求的接口地址
             type: 'POST',
             data: {
