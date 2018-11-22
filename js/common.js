@@ -18,7 +18,7 @@ var util = {
         $.ajax({
             //url: '/get_process_index_data/', //这里面是请求的接口地址
             url: './data.json', //这里面是请求的接口地址
-            type: 'POST',
+            type: 'GET',
             data: {
                 p_run_id: $("#process_run_id").val(),
                 csrfmiddlewaretoken: csrfToken
@@ -38,13 +38,16 @@ var util = {
         if (headerTitle === '') {
             headerTitle = data.name;
             var process_run_url = $("#process_url").val() + "/" + $("#process_run_id").val()
-            $('.header-title h2').html("<a href='"+ process_run_url +"' target='_parent' style='color:#778899'>"+headerTitle+"</a>");
+            $('.header-title h2').html("<a href='" + process_run_url + "' target='_parent' style='color:#778899'>" + headerTitle + "</a>");
         }
 
         var progressBar = $('.progress-par');
         var percent = parseInt(data.percent);
         progressBar.attr('style', 'width:' + percent + '%');
         progressBar.find('i').text(percent + '%');
+        for (var cindex = 0; cindex < allState.length; cindex++) {
+            progressBar.removeClass(allState[cindex]);
+        }
         progressBar.addClass(state.toLocaleLowerCase());
 
         $('.progress-left-time').text(data.starttime);
@@ -102,16 +105,26 @@ var util = {
         util.makeR(rightData);
         util.makeL(leftData);
 
-        var stateArr = ['DONE', 'STOP'];
+        var stateArr = ['DONE', 'STOP', 'ERROR'];
         if ($.inArray(state, stateArr) >= 0) {
             setTimeout(function () {
                 $('.progress-par span').css({
-                    'background': 'url("/static/processindex/images/done.png") no-repeat',
+                    'background': 'url("./images/done.png") no-repeat',
                     'background-size': '90px 70px'
                 });
             }, 1 * 1000);
-            clearInterval(interval);
+
+            //停止
+            if ($.inArray(state, ['DONE', 'STOP']) >= 0) {
+                clearInterval(interval);
+            }
+
             clearInterval(tmInterval);
+        } else {
+            $('.progress-par span').css({
+                'background': 'url("./images/loading.gif") no-repeat',
+                'background-size': '90px 70px'
+            });
         }
     },
     makeR: function (rightData) {
